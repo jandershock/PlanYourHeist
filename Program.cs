@@ -26,21 +26,36 @@ namespace PlanYourHeist
                 }
             }
 
+            Console.Write("\nEnter number of attempts: ");
+            int numberOfAttempts;
+            int.TryParse(Console.ReadLine(), out numberOfAttempts);
+
             int bankDifficultyLevel = 100;
             int teamSkill = 0;
 
-            foreach(TeamMember member in team)
+            foreach (TeamMember member in team)
             {
-                teamSkill += (int) member.SkillLevel;
+                teamSkill += (int)member.SkillLevel;
             }
 
-            if (teamSkill >= bankDifficultyLevel)
+
+            // Attempt loop
+            for (int i = 0; i < numberOfAttempts; i++)
             {
-                Console.WriteLine("Heist successful!");
-            }
-            else
-            {
-                Console.WriteLine("Heist failed!");
+                int luckValue = new Random().Next(-10, 11);
+                bankDifficultyLevel += luckValue;
+
+                Console.WriteLine($"\nTeam skill level: {teamSkill}\nBank difficulty level: {bankDifficultyLevel}");
+
+                if (teamSkill >= bankDifficultyLevel)
+                {
+                    Console.WriteLine("Heist successful!");
+                }
+                else
+                {
+                    Console.WriteLine("Heist failed!");
+                }
+
             }
         }
     }
