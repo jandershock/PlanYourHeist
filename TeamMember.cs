@@ -29,25 +29,21 @@ namespace PlanYourHeist
             return false;
         }
 
-        public TeamMember()
+        public TeamMember(string name)
         {
-            Console.WriteLine("\nEnter Team Member Stats");
-            Console.WriteLine("-----------------------");
+            // Assign name
+            Name = name;
 
-            // Get team member name
-            Console.Write("Name? ");
-            Name = Console.ReadLine();
-
-            // Get valid team member skill level
+            // Get valid team member skill level and assign to _skillLevel property
             do
             {
-                Console.Write("Skill Level? ");
+                Console.Write($"{name}'s Skill Level? ");
             } while (!uint.TryParse(Console.ReadLine(), out _skillLevel));
 
-            // Get valid team member courage factor
+            // Get valid team member courage factor and assign to _courageFactor
             do
             {
-                Console.Write("Courage Factor (0.0 - 2.0)? ");
+                Console.Write($"{name}'s Courage Factor (0.0 - 2.0)? ");
             } while (!isValidCourageFactor(Console.ReadLine(), out _courageFactor));
         }
 

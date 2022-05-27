@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PlanYourHeist
 {
@@ -6,11 +7,31 @@ namespace PlanYourHeist
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Plan Your Heist!");
+            List<TeamMember> team = new List<TeamMember>();
 
-            TeamMember randomMember = new TeamMember();
+            Console.WriteLine("Plan Your Heist!\n");
+
+            Console.WriteLine("Add members to your team:");
+            while (true)
+            {
+                Console.Write("\nName? ");
+                string name = Console.ReadLine();
+                if (name == "")
+                {
+                    break;
+                }
+                else
+                {
+                    team.Add(new TeamMember(name));
+                }
+            }
+
             Console.WriteLine();
-            randomMember.PrintInfo();
+            Console.WriteLine($"Team has {team.Count} members");
+            foreach(TeamMember member in team)
+            {
+                member.PrintInfo();
+            }
         }
     }
 }
