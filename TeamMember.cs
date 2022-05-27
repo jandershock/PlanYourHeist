@@ -8,6 +8,13 @@ namespace PlanYourHeist
         private uint _skillLevel;
         private float _courageFactor;
 
+        public uint SkillLevel
+        {
+            get
+            {
+                return _skillLevel;
+            }
+        }
         public string Name { get; }
 
         // Helper function for validating correct courage factor user input

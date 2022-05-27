@@ -26,11 +26,21 @@ namespace PlanYourHeist
                 }
             }
 
-            Console.WriteLine();
-            Console.WriteLine($"Team has {team.Count} members");
+            int bankDifficultyLevel = 100;
+            int teamSkill = 0;
+
             foreach(TeamMember member in team)
             {
-                member.PrintInfo();
+                teamSkill += (int) member.SkillLevel;
+            }
+
+            if (teamSkill >= bankDifficultyLevel)
+            {
+                Console.WriteLine("Heist successful!");
+            }
+            else
+            {
+                Console.WriteLine("Heist failed!");
             }
         }
     }
