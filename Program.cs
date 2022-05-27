@@ -8,10 +8,18 @@ namespace PlanYourHeist
         static void Main(string[] args)
         {
             List<TeamMember> team = new List<TeamMember>();
+            Stats stats = new Stats();
+            int bankDifficultyLevel;
+
 
             Console.WriteLine("Plan Your Heist!\n");
 
-            Console.WriteLine("Add members to your team:");
+            do
+            {
+                Console.Write("Enter bank difficulty: ");
+            } while (!int.TryParse(Console.ReadLine(), out bankDifficultyLevel));
+
+            Console.WriteLine("\nAdd members to your team:");
             while (true)
             {
                 Console.Write("\nName? ");
@@ -30,7 +38,7 @@ namespace PlanYourHeist
             int numberOfAttempts;
             int.TryParse(Console.ReadLine(), out numberOfAttempts);
 
-            int bankDifficultyLevel = 100;
+
             int teamSkill = 0;
 
             foreach (TeamMember member in team)
@@ -50,13 +58,17 @@ namespace PlanYourHeist
                 if (teamSkill >= bankDifficultyLevel)
                 {
                     Console.WriteLine("Heist successful!");
+                    stats.attemptRecord["Success"] += 1;
                 }
                 else
                 {
                     Console.WriteLine("Heist failed!");
+                    stats.attemptRecord["Fail"] += 1;
                 }
 
             }
+
+            stats.PrintReport();
         }
     }
 }
